@@ -81,3 +81,54 @@ def get_map_data():
             ]
 
     return map_data
+
+
+def add_map_data(map_data_dict, bills_per_state_dict, most_common_policy_area):
+    """
+    Takes the map data dictionary and two dictionaries with data on the states
+    and combines them into a single dictionary that is then returned.
+
+    Args:
+        map_data_dict is the geojson file for the states of the contiguous USA
+            with the state names written as abbreviations, formatted as a
+            dictionary. Each state is listed as a feature with geometry and a
+            state abbreviation
+        bills_per_state_dict is a dictionary containing the state abbreviations
+            as keys and the number of bills proposed by senators of that state
+            as values. The number of bills is an integer
+        most_common_policy_area is a dictionary containing the state
+            abbreviations as keys and the most common policy area of bills
+            proposed by senators of that state as values. The policy areas are
+            strings
+
+        Returns:
+            returns the map_data_dict dictionary formatted as a geojson where
+            the properties of the features include the state abbreviation, the
+            number of bills proposed by a senator from that state and the most
+            common policy area of bills proposed by senators of that state
+    """
+    for index in range(len(map_data_dict["features"])):
+        if (
+            map_data_dict["features"][index]["properties"]["state"]
+            in bills_per_state_dict
+        ):
+            map_data_dict["features"][index]["properties"][
+                "bill count"
+            ] = bills_per_state_dict[
+                map_data_dict["features"][index]["properties"]["state"]
+            ]
+        else:
+            map_data_dict["features"][index]["properties"]["bill count"] = 0
+    for index in range(len(map_data_dict["features"])):
+        if (
+            map_data_dict["features"][index]["properties"]["state"]
+            in most_common_policy_area
+        ):
+            map_data_dict["features"][index]["properties"][
+                "policy area"
+            ] = most_common_policy_area[
+                map_data_dict["features"][index]["properties"]["state"]
+            ]
+        else:
+            map_data_dict["features"][index]["properties"]["bill count"] = ""
+    return map_data_dict
