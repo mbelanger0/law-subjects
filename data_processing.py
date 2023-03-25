@@ -61,9 +61,24 @@ def count_subject(state_policy_dict):
     return state_subject_dict
 
 
-def popular_subject(state_subject_dict):
+def common_subject(state_subject_dict):
     """
-    Returns each state's most popular legislation subject. If there are multiple
+    Returns each state's most common legislation subject. If there are multiple
     equally preferred subjects, returns the alphabetically first
-    (besed on subject_list)
+    (based on the subject_list variable).
+
+    Args:
+        state_subject_dict: a dictionary where the keys are each state, and the
+            values are dictionaries where each each key is a law subject and
+            each value is the number of times the state passed legislation of that
+            subject.
+    Returns:
+        most_common_policy_area: a dictionary where the keys are each state, and the
+            most common policy subject.
     """
+    most_common_policy_area = {}
+    for state in state_subject_dict:
+        most_common_policy_area[state] = max(
+            state_subject_dict[state], key=state_subject_dict[state].get
+        )
+    return most_common_policy_area
