@@ -71,7 +71,6 @@ def get_map_data():
     file "usa_map_data.geojson"
     """
     contiguous_usa = gpd.read_file(gplt.datasets.get_path("contiguous_usa"))
-    gplt.choropleth(contiguous_usa, hue="population")
     gpd.GeoDataFrame.to_file(contiguous_usa, "usa_map_data.geojson")
     with open("usa_map_data.geojson") as usa_map_data:
         map_data = json.load(usa_map_data)
