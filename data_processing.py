@@ -56,8 +56,7 @@ def count_subject(state_policy_dict):
     for state in state_policy_dict:
         state_subject_dict[state] = {}
         for subject in subject_list:
-            subject_count = state_policy_dict[state].count(subject)
-            state_subject_dict[state][subject] = subject_count
+            state_subject_dict[state][subject] = state_policy_dict[state].count(subject)
     return state_subject_dict
 
 
