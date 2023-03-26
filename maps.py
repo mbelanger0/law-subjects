@@ -130,7 +130,7 @@ def add_map_data(map_data_dict, bills_per_state_dict, most_common_policy_area):
                 map_data_dict["features"][index]["properties"]["state"]
             ]
         else:
-            map_data_dict["features"][index]["properties"]["policy area"] = ""
+            map_data_dict["features"][index]["properties"]["policy area"] = "No Data"
     return map_data_dict
 
 
