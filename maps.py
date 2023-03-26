@@ -132,3 +132,21 @@ def add_map_data(map_data_dict, bills_per_state_dict, most_common_policy_area):
         else:
             map_data_dict["features"][index]["properties"]["policy area"] = ""
     return map_data_dict
+
+
+def make_geodata(map_data_dict):
+    """
+    Takes a dictionary formatted like a geodata frame and turns it into a
+    geodata frame
+
+    Args:
+        map_data_dict is a dictionary formatted like a geodata frame with
+        multiple features
+
+    Returns:
+        map_data_geoframe is a geodataframe with all of the features in
+        map_data_dict
+    """
+    map_data_geoframe = gpd.GeoDataFrame.from_features(map_data_dict["features"])
+    map_data_geoframe.set_geometry("geometry")
+    return map_data_geoframe
