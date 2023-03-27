@@ -9,7 +9,7 @@ def get_data(start_congress, end_congress, API_KEY):
     all_data = []
     for congress in range(start_congress, end_congress + 1):
         bills = requests.get(
-            f"https://api.congress.gov/v3/bill/{congress}/s?&api_key={API_KEY}"
+            f"https://api.congress.gov/v3/bill/{congress}/s?limit=90&api_key={API_KEY}"
         )
         bill_nye = bills.json()
         bills_list = bill_nye["bills"]
