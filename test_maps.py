@@ -4,16 +4,47 @@ from maps.py.
 """
 import maps
 
+
 def test_add_map_data_three_dictionaries():
     """
     Test that the function combines dictionaries as expected
     """
-    group = {"features": [{"properties":{"NH": "Mark", "MO": "Noah", "CO": "Crazy Noah"}]
-    professor = {"Steve": "Some Professor", "Aman": "Another Professor", "Erhardt": "My Professor"}
-    course = {"QEA": 100, "SoftDes": 1020, "ISIM": 830}
+    state = {
+        "features": [
+            {"properties": {"state": "MO"}},
+            {"properties": {"state": "CO"}},
+            {"properties": {"state": "NH"}},
+        ]
+    }
+    subject_area = {"MO": "Noah", "CO": "Other Noah", "NH": "Mark"}
+    bill_count = {"MO": 100, "CO": 1020, "NH": 830}
 
-    assert maps.add_map_data(group, professor, course) == {
-        {"NH": "Mark", "Steve": "Some Professor", "QEA": 100}
+    assert maps.add_map_data(state, bill_count, subject_area) == {
+        {
+            "features": [
+                {
+                    "properties": {
+                        "state": "MO",
+                        "bill count": 100,
+                        "policy area": "Noah",
+                    }
+                },
+                {
+                    "properties": {
+                        "state": "CO",
+                        "bill count": 1020,
+                        "policy area": "Other Noah",
+                    }
+                },
+                {
+                    "properties": {
+                        "state": "NH",
+                        "bill count": 830,
+                        "policy area": "Mark",
+                    }
+                },
+            ]
+        }
     }
 
 
@@ -21,6 +52,12 @@ def test_make_geodata_datatype():
     """
     Test that the functions output is a geodataframe.
     """
-    random_dict = {"NH": "Mark", "MO": "Noah", "CO": "Crazy Noah"}
+    random_dict = {
+        "features":[
+            {"properties":{"person":"Mark"},"geometry":{"type":"Point","coordinates":[0,0]}}
+            {"properties":{"person":"Noah"},"geometry":{"type":"Point","coordinates":[0,1]}}
+            {"properties":{"person":"Other Noah"},"geometry":{"type":"Point","coordinates":[1,0]}}
+            ]
+        }
     # Change response to be right
     assert isinstance(maps.make_geodata(random_dict)) == "Geo_Data_Frame"
