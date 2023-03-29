@@ -1,8 +1,10 @@
-import geopandas as gpd
-import pandas as pd
-import geoplot as gplt
-import geoplot.crs as gcrs
+"""
+Contains functions used to visualize data to a map.
+"""
+
 import json
+import geopandas as gpd
+import geoplot as gplt
 
 abbreviations = {
     "Alabama": "AL",
@@ -72,7 +74,7 @@ def get_map_data():
     """
     contiguous_usa = gpd.read_file(gplt.datasets.get_path("contiguous_usa"))
     gpd.GeoDataFrame.to_file(contiguous_usa, "usa_map_data.geojson")
-    with open("usa_map_data.geojson") as usa_map_data:
+    with open("usa_map_data.geojson", "r", encoding=646) as usa_map_data:
         map_data = json.load(usa_map_data)
     for feature in map_data["features"]:
         if feature["properties"]["state"] in abbreviations:
