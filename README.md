@@ -14,3 +14,5 @@ This project requires several libraries in order to run, including Pandas, Matpl
 
 ## Generating Identical Data and Plots ##
 To generate identical data and plots, use `get_data` to get data from Congresses 117. The code should be `bills = get_data(117, 117, API_KEY)` to get data from just the 117th Congress.
+
+Note: Titles cannot be added to the geospatial plots created using Geoplot and Geopandas so the titles of the plots are printed above the plots in text
