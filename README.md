@@ -7,10 +7,10 @@ This project requires several libraries in order to run, including Pandas, Matpl
 
 `conda install geoplot -c conda-forge`
 
-    *Installing Geoplot can take over 20 minutes. Be patient
+    *Installing Geoplot can take over 20 minutes. Be patient.
 
 `conda install --channel conda-forge geopandas`
 
 
 ## Generating Identical Data and Plots ##
-To generate identical data and plots, use `get_data` to get data from Congresses 117. The code should be `bills = get_data(117, 117, API_KEY)`
+To generate identical data and plots, use `get_data` to get data from Congresses 117. The code should be `bills = get_data(117, 117, API_KEY)` to get data from just the 117th Congress.
