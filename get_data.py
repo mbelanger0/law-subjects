@@ -28,8 +28,8 @@ def get_data(start_congress, end_congress, api_key):
         bills = requests.get(
             f"https://api.congress.gov/v3/bill/{congress}/s?limit=250&api_key={api_key}"
         )
-        bill_nye = bills.json()
-        bills_list = bill_nye["bills"]
+        bill_data = bills.json()
+        bills_list = bill_data["bills"]
         for bill in bills_list:
             bill_number = bill["number"]
             individual_bill = requests.get(
